@@ -7,7 +7,7 @@
   "type": "generic",
   "license": "Copyright (c) Jarid Richardson and Joseph Sirak 2017",
   "main_module": "aws_connector.pyc",
-  "app_version": "1.0.1",
+  "app_version": "1.0.2",
   "utctime_updated": "2017-10-17T08:08:48.000000Z",
   "product_vendor": "Amazon",
   "product_name": "AWS",
