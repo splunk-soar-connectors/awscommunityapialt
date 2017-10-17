@@ -30,7 +30,7 @@ def _json_fallback(obj):
 class AWSConnector(BaseConnector):
 
     ACTION_ID_AWS_DESCRIBE_INSTANCE = "aws_describe_instance"
-    ACTION_ID_AWS_DESCRIBE_USER = "aws_describe_user"
+    ACTION_ID_AWS_DESCRIBE_USER = "list_users"
     ACTION_ID_TEST_ASSET_CONNECTIVITY = "test_asset_connectivity"
     ACTION_ID_AWS_DETACH_INSTANCE_FROM_AUTOSCALING_GROUP = "aws_detach_instance_from_autoscaling_group"
     ACTION_AWS_DEREGISTER_INSTANCE_FROM_ELB = "aws_deregister_instance_from_elb"
