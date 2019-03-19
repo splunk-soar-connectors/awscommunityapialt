@@ -5,7 +5,7 @@
   "publisher": "Jarid Richardson and Joseph Sirak",
   "package_name": "phantom_aws_containment",
   "type": "generic",
-  "license": "Copyright (c) Jarid Richardson and Joseph Sirak 2017-2019",
+  "license": "Copyright (c) Jarid Richardson and Joseph Sirak 2014-2019",
   "main_module": "aws_connector.pyc",
   "app_version": "1.0.2",
   "utctime_updated": "2017-10-17T08:08:48.000000Z",
