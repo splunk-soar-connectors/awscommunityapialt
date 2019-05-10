@@ -515,79 +515,79 @@
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.Description",
+                    "data_path": "action_result.data.*.Description",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.Encrypted",
+                    "data_path": "action_result.data.*.Encrypted",
                     "data_type": "boolean"
                 },
                 {
-                    "data_path": "action_result.data.*.*.OwnerId",
+                    "data_path": "action_result.data.*.OwnerId",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.Progress",
+                    "data_path": "action_result.data.*.Progress",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.ResponseMetadata.HTTPHeaders.content-type",
+                    "data_path": "action_result.data.*.ResponseMetadata.HTTPHeaders.content-type",
                     "data_type": "string",
                     "column_name": "Content-Type",
                     "column_order": 3
                 },
                 {
-                    "data_path": "action_result.data.*.*.ResponseMetadata.HTTPHeaders.date",
+                    "data_path": "action_result.data.*.ResponseMetadata.HTTPHeaders.date",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.ResponseMetadata.HTTPHeaders.server",
+                    "data_path": "action_result.data.*.ResponseMetadata.HTTPHeaders.server",
                     "data_type": "string",
                     "column_name": "Server",
                     "column_order": 1
                 },
                 {
-                    "data_path": "action_result.data.*.*.ResponseMetadata.HTTPHeaders.transfer-encoding",
+                    "data_path": "action_result.data.*.ResponseMetadata.HTTPHeaders.transfer-encoding",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.ResponseMetadata.HTTPHeaders.vary",
+                    "data_path": "action_result.data.*.ResponseMetadata.HTTPHeaders.vary",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.ResponseMetadata.HTTPStatusCode",
+                    "data_path": "action_result.data.*.ResponseMetadata.HTTPStatusCode",
                     "data_type": "numeric",
                     "column_name": "Status Code",
                     "column_order": 2
                 },
                 {
-                    "data_path": "action_result.data.*.*.ResponseMetadata.RequestId",
+                    "data_path": "action_result.data.*.ResponseMetadata.RequestId",
                     "data_type": "string",
                     "column_name": "Request ID",
                     "column_order": 0
                 },
                 {
-                    "data_path": "action_result.data.*.*.ResponseMetadata.RetryAttempts",
+                    "data_path": "action_result.data.*.ResponseMetadata.RetryAttempts",
                     "data_type": "numeric"
                 },
                 {
-                    "data_path": "action_result.data.*.*.SnapshotId",
+                    "data_path": "action_result.data.*.SnapshotId",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.StartTime",
+                    "data_path": "action_result.data.*.StartTime",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.State",
+                    "data_path": "action_result.data.*.State",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.VolumeId",
+                    "data_path": "action_result.data.*.VolumeId",
                     "data_type": "string"
                 },
                 {
-                    "data_path": "action_result.data.*.*.VolumeSize",
+                    "data_path": "action_result.data.*.VolumeSize",
                     "data_type": "numeric"
                 },
                 {

@@ -522,7 +522,10 @@ class AWSConnector(BaseConnector):
                 vol_response.append(response)
                 summary += vol + ", "
             summary = {'summary': summary}
-            action_result.add_data(vol_response)
+
+            for resp in vol_response:
+                action_result.add_data(resp)
+
             action_result.update_summary(summary)
             action_result.set_status(phantom.APP_SUCCESS)
 
