@@ -79,7 +79,7 @@ class AWSConnector(BaseConnector):
             aws_response = aws_client.describe_instances()
 
             if (len(aws_response['Reservations']) > 0):
-                self.set_status(phantom.APP_ERROR, AWS_ERR_API_CONNECTION, e)
+                self.set_status(phantom.APP_ERROR, AWS_ERR_API_CONNECTION)
                 self.append_to_message(AWS_ERR_CONNECTIVITY_TEST)
                 return self.get_status()
 
@@ -97,9 +97,8 @@ class AWSConnector(BaseConnector):
 
         self.debug_print("param", param)
 
-        # Add an action result to the App Run
-        action_result = ActionResult(dict(param))
-        self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
 
         # Get AWS Region
         region = config.get(AWS_REGION)
@@ -115,7 +114,7 @@ class AWSConnector(BaseConnector):
                 self.save_progress("Using Region {0}".format(region))
                 aws_session = boto3.session.Session(region_name=region)
             else:
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_REGION, e)
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_REGION)
                 return action_result.get_status()
 
             # BOTO3 Describe instances
@@ -169,9 +168,8 @@ class AWSConnector(BaseConnector):
 
         # create an iam client object
         # client = boto3.client('iam')
-        # add action_result to the app run
-        action_result = ActionResult(dict(param))
-        self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
 
         # get region
         region = config.get(AWS_REGION)
@@ -188,7 +186,7 @@ class AWSConnector(BaseConnector):
                 self.save_progress("Using Region {0}".format(region))
                 aws_session = boto3.session.Session(region_name=region)
             else:
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API)
                 return action_result.get_status
 
             user_dict = {}                          # user info
@@ -321,9 +319,8 @@ class AWSConnector(BaseConnector):
         config = self.get_config()
         self.debug_print("param", param)
 
-        # Add an action result to the App Run
-        action_result = ActionResult(dict(param))
-        self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
 
         # get region
         region = config.get(AWS_REGION)
@@ -343,7 +340,7 @@ class AWSConnector(BaseConnector):
                 self.save_progress("Using Region {0}".format(region))
                 aws_session = boto3.session.Session(region_name=region)
             else:
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API)
                 return action_result.get_status
 
             # AWS client instnace
@@ -351,7 +348,7 @@ class AWSConnector(BaseConnector):
             response = aws_client.describe_auto_scaling_instances(InstanceIds=[instance_id])
             if(len(response['AutoScalingInstances']) > 0):
                 if(autoscaling_group_name and response['AutoScalingInstances'][0]['AutoScalingGroupName'] != autoscaling_group_name):
-                    summary = {'summary': "Instance: " + instances_id + " is not conected to the Auto-scaling Group: " + autoscaling_group_name + "."}
+                    summary = {'summary': "Instance: " + instance_id + " is not conected to the Auto-scaling Group: " + autoscaling_group_name + "."}
                     action_result.update_summary(summary)
                     action_result.set_status(phantom.APP_SUCCESS)
 
@@ -377,9 +374,9 @@ class AWSConnector(BaseConnector):
         config = self.get_config()
         self.debug_print("param", param)
 
-        # Add an action result to the App Run
-        action_result = ActionResult(dict(param))
-        self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
+        summary = action_result.update_summary({})
 
         # get region, instance_id & elb_name
         region = config.get(AWS_REGION)
@@ -400,7 +397,7 @@ class AWSConnector(BaseConnector):
                 aws_session = boto3.session.Session(region_name=region)
             else:
                 action_result.update_summary(summary)
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API)
                 return action_result.get_status
 
             aws_client = aws_session.client('elb')
@@ -411,7 +408,7 @@ class AWSConnector(BaseConnector):
                             }
                 ])
                 if(len(response['InstanceStates']) < 1):
-                    summary = {'summary': "Instance: " + instances_id + " is not conected to the ELB: " + elb_name + "."}
+                    summary = {'summary': "Instance: " + instance_id + " is not conected to the ELB: " + elb_name + "."}
                     action_result.update_summary(summary)
                     action_result.set_status(phantom.APP_SUCCESS)
                     return action_result.get_status()
@@ -451,9 +448,9 @@ class AWSConnector(BaseConnector):
         config = self.get_config()
         self.debug_print("param", param)
 
-        # Add an action result to the App Run
-        action_result = ActionResult(dict(param))
-        self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
+        summary = action_result.update_summary({})
 
         # get region
         region = config.get(AWS_REGION)
@@ -469,7 +466,7 @@ class AWSConnector(BaseConnector):
                 self.save_progress("Using Region {0}".format(region))
                 aws_session = boto3.session.Session(region_name=region)
             else:
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API)
                 return action_result.get_status
 
             aws_client = aws_session.client('ec2')
@@ -485,53 +482,56 @@ class AWSConnector(BaseConnector):
 
     # Snapshot all volumes attached to the instacne (-Sirak)
     def _handle_aws_snapshot_volumes(self, param):
-            # Get the config
-            config = self.get_config()
-            self.debug_print("param", param)
+        # Get the config
+        config = self.get_config()
+        self.debug_print("param", param)
 
-            # Add an action result to the App Run
-            action_result = ActionResult(dict(param))
-            self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
+        summary = action_result.update_summary({})
 
-            # get region
-            region = config.get(AWS_REGION)
-            aws_access_key_id = config.get(AWS_ACCESS_KEY_ID)
-            aws_secret_access_key = config.get(AWS_SECRET_ACCESS_KEY)
-            attached_vols = param[AWS_ATTACHED_VOLUMES]
-            attached_vols = attached_vols.split(", ")
-            description = ""
+        # get region
+        region = config.get(AWS_REGION)
+        aws_access_key_id = config.get(AWS_ACCESS_KEY_ID)
+        aws_secret_access_key = config.get(AWS_SECRET_ACCESS_KEY)
+        attached_vols = param[AWS_ATTACHED_VOLUMES]
+        attached_vols = attached_vols.split(", ")
+        description = ""
 
-            if param.get(AWS_ATTACHED_VOLUMES_DESCRIPTION):
-                description = param[AWS_ATTACHED_VOLUMES_DESCRIPTION]
+        if param.get(AWS_ATTACHED_VOLUMES_DESCRIPTION):
+            description = param[AWS_ATTACHED_VOLUMES_DESCRIPTION]
 
-            try:
-                if (region and aws_access_key_id and aws_secret_access_key):
-                    self.save_progress("Using Region {0}".format(region))
-                    aws_session = boto3.session.Session(region_name=region, aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
-                elif(region and not aws_access_key_id and not aws_secret_access_key ):
-                    self.save_progress("Using Region {0}".format(region))
-                    aws_session = boto3.session.Session(region_name=region)
-                else:
-                    action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
-                    return action_result.get_status
+        try:
+            if (region and aws_access_key_id and aws_secret_access_key):
+                self.save_progress("Using Region {0}".format(region))
+                aws_session = boto3.session.Session(region_name=region, aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
+            elif(region and not aws_access_key_id and not aws_secret_access_key ):
+                self.save_progress("Using Region {0}".format(region))
+                aws_session = boto3.session.Session(region_name=region)
+            else:
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API)
+                return action_result.get_status
 
-                aws_client = aws_session.client('ec2')
-                summary = "Snapshot the following Volumes:"
-                vol_response = []
-                for vol in attached_vols:
-                    response = aws_client.create_snapshot(DryRun=False, VolumeId=vol, Description=description)
-                    response = json.dumps(response, default=_json_fallback)
-                    response = json.loads(response)
-                    vol_response.append(response)
-                    summary += vol + ", "
-                summary = {'summary': summary}
-                action_result.add_data(vol_response)
-                action_result.update_summary(summary)
-                action_result.set_status(phantom.APP_SUCCESS)
+            aws_client = aws_session.client('ec2')
+            summary = "Snapshot the following Volumes:"
+            vol_response = []
+            for vol in attached_vols:
+                response = aws_client.create_snapshot(DryRun=False, VolumeId=vol, Description=description)
+                response = json.dumps(response, default=_json_fallback)
+                response = json.loads(response)
+                vol_response.append(response)
+                summary += vol + ", "
+            summary = {'summary': summary}
 
-            except Exception as e:
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
-                return action_result.get_status()
+            for resp in vol_response:
+                action_result.add_data(resp)
+
+            action_result.update_summary(summary)
+            action_result.set_status(phantom.APP_SUCCESS)
+
+        except Exception as e:
+            action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
+            return action_result.get_status()
 
     # Add instance to the quarantine security group (-Sirak)
     # *can be extended to add to security group
@@ -540,9 +540,9 @@ class AWSConnector(BaseConnector):
         config = self.get_config()
         self.debug_print("param", param)
 
-        # Add an action result to the App Run
-        action_result = ActionResult(dict(param))
-        self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
+        summary = action_result.update_summary({})
 
         # get region
         region = config.get(AWS_REGION)
@@ -561,7 +561,7 @@ class AWSConnector(BaseConnector):
             else:
                 summary = {'summary': "Security group: " + sg_name + " doesn't exist."}
                 action_result.update_summary(summary)
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API)
                 return action_result.get_status
 
             aws_client = aws_session.client('ec2')
@@ -596,9 +596,9 @@ class AWSConnector(BaseConnector):
         config = self.get_config()
         self.debug_print("param", param)
 
-        # Add an action result to the App Run
-        action_result = ActionResult(dict(param))
-        self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
+        summary = action_result.update_summary({})
 
         # get region
         region = config.get(AWS_REGION)
@@ -617,7 +617,7 @@ class AWSConnector(BaseConnector):
                 self.save_progress("Using Region {0}".format(region))
                 aws_session = boto3.session.Session(region_name=region)
             else:
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API)
                 return action_result.get_status()
 
             aws_client = aws_session.client('ec2')
@@ -641,9 +641,9 @@ class AWSConnector(BaseConnector):
         config = self.get_config()
         self.debug_print("parm", param)
 
-        # Add an action result to the App Run
-        action_result = ActionResult(dict(param))
-        self.add_action_result(action_result)
+        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        action_result = self.add_action_result(ActionResult(dict(param)))
+        summary = action_result.update_summary({})
 
         # Add an action result to the app Run
         region = config.get(AWS_REGION)
@@ -658,7 +658,9 @@ class AWSConnector(BaseConnector):
         port_range = None
         if(param.get(AWS_PORT_RANGE)):
             ip_range = param[AWS_PORT_RANGE]
-            ip_range.split("-")
+            port_range = ip_range.split("-")
+            if len(port_range) < 2:
+                return action_result.set_status(phantom.APP_ERROR, 'Please provide a valid port range. e.g. <min_port_number>-<max_port_number>')
 
         try:
             if (region and aws_access_key_id and aws_secret_access_key):
@@ -668,7 +670,7 @@ class AWSConnector(BaseConnector):
                 self.save_progress("Using Region {0}".format(region))
                 aws_session = boto3.session.Session(region_name=region)
             else:
-                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API, e)
+                action_result.set_status(phantom.APP_ERROR, AWS_ERR_API)
                 return action_result.get_status()
 
             aws_ec2 = aws_session.resources('ec2')
@@ -732,7 +734,7 @@ class AWSConnector(BaseConnector):
             ret_val = self._handle_aws_add_tag(param)
 
         elif (action_id == self.ACTION_AWS_ADD_NETWORKACL_RULE):
-            ret_Val == self._handle_aws_add_netwrokacl_rule(param)
+            ret_val == self._handle_aws_add_netwrokacl_rule(param)
 
         return ret_val
 
