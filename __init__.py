@@ -1,7 +1,7 @@
 # --
 # File: __init__.py
 #
-# Copyright (c) Phantom Cyber Corporation, 2014-2016
+# Copyright (c) Jarid Richardson and Joseph Sirak 2014-2019
 #
 # This unpublished material is proprietary to Phantom Cyber.
 # All rights reserved. The methods and

@@ -12,19 +12,19 @@ File: readme.html
   <li>Describe Instance</li>
   <li>Detach instance from Auto-Scaling group</li>
   <li>Deregister instance from ELB Group</li>
-  <li>Add instance to containment security group (Info on security group below)</li>
+  <li>Add instance to a containment security group (info on security group below)</li>
   <li>Disable instance API termination</li>
   <li>Snapshot volumes</li>
   <li>Add quarantine tag</li>
 </ol>
 <h3>AWS Containment Security Group</h3>
 <p>
-  Create a EC2 Security group in AWS with and empty ruleset. AWS automatically has an implied disallow rule, so as long as no IP is provided it will cut off all communication. It is best practice to add the IP address for your Forensic Investion Instance to the inbound rules.
+  Create an EC2 Security group in AWS with an empty ruleset. AWS automatically has an implied disallow rule, so as long as no IP is provided, it will cut off all communication. It is best practice to add the IP address for your Forensic Investion Instance to the inbound rules.
 </p>
 
 <h3>AWS Role for Phantom Actions</h3>
 <p>
-  In order for all of the actions to run successfully please add an IAM role with the following permissions:
+  In order for all of actions to run successfully, please add an IAM role with the following permissions:
 </p>
 <pre>
   <code>
