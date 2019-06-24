@@ -12,7 +12,7 @@
     "product_vendor": "Amazon",
     "product_name": "AWS",
     "product_version_regex": ".*",
-    "min_phantom_version": "4.0.1068",
+    "min_phantom_version": "4.2.7532",
     "logo": "logo_aws.svg",
     "logo_dark": "logo_aws_dark.svg",
     "pip_dependencies": {
